@@ -1,0 +1,3 @@
+tls-san:
+  - "localhost"
+  - "127.0.0.1"

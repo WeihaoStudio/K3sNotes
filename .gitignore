@@ -3,3 +3,8 @@
 
 *.env
 !.gitkeep
+
+*.sensitive.yaml
+config.yaml
+!*.template
+datastore.yaml
