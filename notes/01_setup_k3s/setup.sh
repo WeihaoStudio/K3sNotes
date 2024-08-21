@@ -31,13 +31,14 @@ curl -sfL https://rancher-mirror.rancher.cn/k3s/k3s-install.sh | INSTALL_K3S_MIR
 CLUSTER_KUBECONFIG="$HOME/.kube/${INTERNAL_IP}.kubeconfig"
 cat $K3S_CONFIG_DIR/k3s.yaml | sed "s/127.0.0.1/$EXTERNAL_IP/g" | sed "s/ default/ $INTERNAL_IP/g" > $CLUSTER_KUBECONFIG
 
-
 DEFAULT_CLUSTER_KUBECONFIG="$HOME/.kube/config"
 if [[ -r "$DEFAULT_CLUSTER_KUBECONFIG" ]] then 
-    KUBECONFIG="$DEFAULT_CLUSTER_KUBECONFIG:$CLUSTER_KUBECONFIG"
+    export KUBECONFIG="$DEFAULT_CLUSTER_KUBECONFIG:$CLUSTER_KUBECONFIG"
 else
-    KUBECONFIG="$CLUSTER_KUBECONFIG"
-fi 
+    export KUBECONFIG="$CLUSTER_KUBECONFIG"
+fi
+
+echo "KUBECONFIG: $KUBECONFIG"
 
 # 合并 kubeconfig
 MREGED_CLUSTER_CONFIG="$HOME/.kube/merged_$(date +%s).kubeconfig"
