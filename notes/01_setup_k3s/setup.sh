@@ -28,8 +28,8 @@ cp -fvr $WORKDIR/config.yaml.d $K3S_CONFIG_DIR/
 curl -sfL https://rancher-mirror.rancher.cn/k3s/k3s-install.sh | INSTALL_K3S_MIRROR=cn INSTALL_K3S_CHANNEL=v1.26 sh -
 
 # 复制 kubeconfig
-CLUSTER_KUBECONFIG="$HOME/.kube/${INTERNAL_IP}.kubeconfig"
-cat $K3S_CONFIG_DIR/k3s.yaml | sed "s/127.0.0.1/$EXTERNAL_IP/g" | sed "s/ default/ $INTERNAL_IP/g" > $CLUSTER_KUBECONFIG
+CLUSTER_KUBECONFIG="$HOME/.kube/${EXTERNAL_IP}.kubeconfig"
+cat $K3S_CONFIG_DIR/k3s.yaml | sed "s/127.0.0.1/$EXTERNAL_IP/g" | sed "s/ default/ $EXTERNAL_IP/g" > $CLUSTER_KUBECONFIG
 
 DEFAULT_CLUSTER_KUBECONFIG="$HOME/.kube/config"
 if [[ -r "$DEFAULT_CLUSTER_KUBECONFIG" ]]; then 
