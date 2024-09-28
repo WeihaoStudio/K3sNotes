@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: weihaostudio-tls
+spec:
+  secretName: weihaostudio-tls
+  commonName: weihaostudio.com
+  dnsNames:
+  - weihaostudio.com
+  - "*.weihaostudio.com"
+  issuerRef:
+    name: alidns-issuer
+    kind: ClusterIssuer

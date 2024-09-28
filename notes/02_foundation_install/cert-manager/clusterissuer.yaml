@@ -1,0 +1,27 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: alidns-issuer
+spec:
+  acme:
+    # The ACME server URL
+    server: https://acme-v02.api.letsencrypt.org/directory
+    # Email address used for ACME registration
+    email: admin@example.com
+    # Name of a secret used to store the ACME account private key
+    privateKeySecretRef:
+      name: acme
+    solvers:
+      - dns01:
+          webhook:
+            groupName: acme.weihaostudio.com
+            solverName: alidns
+            config:
+              accessKeyIdRef:
+                name: aliyuncs-dns
+                namespace: kube-system
+                key: ALICLOUD_ACCESS_KEY
+              accessKeySecretRef:
+                name: aliyuncs-dns
+                namespace: kube-system
+                key: ALICLOUD_SECRET_KEY

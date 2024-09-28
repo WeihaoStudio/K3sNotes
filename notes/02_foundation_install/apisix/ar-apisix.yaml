@@ -1,0 +1,17 @@
+# 定义访问后端的路由
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: apisix-dashboard
+  namespace: kube-system
+spec:
+  http:
+    - name: apisix-dashboard
+      match:
+        paths:
+          - "/*"
+        hosts:
+          - apisix.weihaostudio.com
+      backends:
+        - serviceName: apisix-dashboard
+          servicePort: 80

@@ -1,4 +1,4 @@
 disable:
   - "servicelb"
-  - "local-storage"
+  # - "local-storage"
   - "traefik"

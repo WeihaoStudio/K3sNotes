@@ -1,0 +1,16 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: longhorn-frontend
+  namespace: longhorn-system
+spec:
+  http:
+    - name: longhorn-frontend
+      match:
+        paths:
+          - "/*"
+        hosts:
+          - longhorn.weihaostudio.com
+      backends:
+        - serviceName: longhorn-frontend
+          servicePort: 80

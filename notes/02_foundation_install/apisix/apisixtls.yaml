@@ -1,0 +1,11 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixTls
+metadata:
+  name: weihaostudio-tls
+spec:
+  hosts:
+    - "weihaostudio.com"
+    - "*.weihaostudio.com"
+  secret:
+    name: weihaostudio-tls
+    namespace: certificate
