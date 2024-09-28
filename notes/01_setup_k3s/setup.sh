@@ -46,7 +46,7 @@ kubectl config view --flatten > $MREGED_CLUSTER_CONFIG
 
 # 备份合并前 kubeconfig
 BACKUP_CLUSTER_CONFIG="$HOME/.kube/bak_$(date +%s).kubeconfig"
-if [[ -r "$DEFAULT_CLUSTER_KUBECONFIG" ]] then 
+if [[ -r "$DEFAULT_CLUSTER_KUBECONFIG" ]]; then 
     mv $DEFAULT_CLUSTER_KUBECONFIG $BACKUP_CLUSTER_CONFIG 
 fi
 
