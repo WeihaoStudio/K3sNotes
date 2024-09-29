@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: weihaostudio-blog
+subsets:
+  - addresses:
+    - ip: "42.193.139.215"
+    ports:
+    - name: http
+      port: 80
+    - name: https
+      port: 443
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: weihaostudio-blog
+spec:
+  ports:
+    - name: http
+      port: 80
+    - name: https
+      port: 443
+---
+# 定义访问后端的路由
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: weihaostudio-blog
+spec:
+  http:
+    - name: weihaostudio-blog
+      match:
+        paths:
+          - "/*"
+        hosts:
+          - www.weihaostudio.com
+          - weihaostudio.com
+      backends:
+        - serviceName: weihaostudio-blog
+          servicePort: http
+  
