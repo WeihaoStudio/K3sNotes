@@ -19,7 +19,8 @@ helm -n certificate upgrade -i cert-manager ./k8s/cert-manager \
 helm -n certificate upgrade -i alidns-webhook k8s/alidns-webhook/charts/alidns-webhook \
     --create-namespace \
     --set groupName=acme.weihaostudio.com \
-    --set certManager.serviceAccountName=cert-manager-controller
+    --set certManager.serviceAccountName=cert-manager-controller \
+    --set certManager.namespace=namespace
 
 ## 注册 ALIDNS KeySecret 到 Secret
 
